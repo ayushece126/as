@@ -1,5 +1,3 @@
-"use client";
-
 import { ReactNode, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -44,35 +42,22 @@ const AuthForm = ({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="flex items-center justify-center w-screen min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700">
+    <div className="flex items-center justify-center w-screen min-h-screen bg-gray-50">
       {/* Main Container */}
-      <div className="flex w-full max-w-4xl h-[550px] rounded-lg shadow-xl overflow-hidden bg-white">
-        {/* Left Image Section */}
-        <div className="w-1/2 hidden md:block relative h-full">
-          <div
-            className="w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/about.jpg')" }}
-          >
-            <div className="absolute inset-0 bg-black opacity-50"></div>
-          </div>
-          <div className="absolute inset-0 flex justify-center items-center text-center px-8 text-white">
-            <h1 className="text-4xl font-bold mb-4">ArcSys Lab</h1>
-          </div>
-        </div>
-
+      <div className="flex w-full max-w-3xl h-auto rounded-lg shadow-lg overflow-hidden bg-white border border-gray-200">
         {/* Right Form Section */}
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-900 h-full p-6">
+        <div className="w-full flex items-center justify-center p-8">
           <div className="w-full max-w-md">
             <CardHeader>
-              <CardTitle className="text-center text-3xl font-semibold text-white mb-6">
+              <CardTitle className="text-center text-2xl font-semibold text-gray-800 mb-6">
                 {title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={onSubmit} className="space-y-6">
+              <form onSubmit={onSubmit} className="space-y-5">
                 {fields.map((field) => (
                   <div key={field.id} className="relative">
-                    <Label htmlFor={field.id} className="text-white text-lg">
+                    <Label htmlFor={field.id} className="text-gray-700 text-sm">
                       {field.label}
                     </Label>
                     <Input
@@ -88,7 +73,7 @@ const AuthForm = ({
                       value={field.value}
                       onChange={field.onChange}
                       required
-                      className="w-full p-3 mt-2 bg-gray-700 text-white rounded-md border border-gray-600 focus:ring-2 focus:ring-green-400"
+                      className="w-full p-3 mt-2 bg-gray-100 text-gray-800 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-400"
                     />
                     {field.type === "password" && field.id === "password" && (
                       <button
@@ -109,14 +94,14 @@ const AuthForm = ({
                 {extraContent}
                 <Button
                   type="submit"
-                  className="w-full py-3 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-400"
+                  className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400"
                   disabled={loading}
                 >
                   {buttonText}
                   {loading && <PulseLoader size={6} color="#fff" />}
                 </Button>
               </form>
-              <p className="mt-4 text-center text-sm text-white">
+              <p className="mt-4 text-center text-sm text-gray-600">
                 {navigationText}{" "}
                 <Link
                   href={navigationLink}
@@ -126,14 +111,21 @@ const AuthForm = ({
                 </Link>
               </p>
               {forgotPasswordLink && (
-                <p className="mt-2 text-center text-sm text-white">
-                  <Link
-                    href={forgotPasswordLink}
-                    className="text-blue-500 hover:underline"
-                  >
-                    Forgot Password?
-                  </Link>
-                </p>
+                <div className="mt-4 flex items-center space-x-4">
+                  <img
+                    src="/images/avatar-placeholder.png"//path
+                    alt="Avatar"
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <p className="text-sm text-gray-600">
+                    <Link
+                      href={forgotPasswordLink}
+                      className="text-blue-500 hover:underline"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </p>
+                </div>
               )}
             </CardContent>
           </div>
